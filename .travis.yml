@@ -24,7 +24,7 @@ before_install:
   if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
     echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
   fi
-- docker run --rm --privileged multiarch/qemu-user-static:register
+- docker run --rm --privileged linuxkit/binfmt:v0.8
 - docker --version
 - docker buildx create --use
 
@@ -34,7 +34,7 @@ script:
 deploy:
   - provider: script
     edge: true
-    script: docker buildx build --platform linux/arm64 -t kodumbeats/appwriteclitest:0.3 ./ --push
+    script: docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x -t kodumbeats/appwriteclitest:0.3 ./ --push
     on:
       repo: kodumbeats/sdk-for-cli
       branch: fix-buildx-qemu
