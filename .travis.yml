@@ -36,4 +36,4 @@ deploy:
     script: docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x -t kodumbeats/appwriteclitest:0.3 ./ --push
     on:
       repo: kodumbeats/sdk-for-cli
-      branch: master
+      branch: fix-buildx-qemu
