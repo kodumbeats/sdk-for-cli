@@ -33,7 +33,7 @@ script:
 deploy:
   - provider: script
     edge: true
-    script: docker buildx build --platform linux/amd64,linux/arm64,linux/ppc64le,linux/s390x -t kodumbeats/appwriteclitest:0.3 ./ --push
+    script: docker buildx build --platform linux/amd64,linux/arm64 -t kodumbeats/appwriteclitest:0.3 ./ --push
     on:
       repo: kodumbeats/sdk-for-cli
       branch: fix-buildx-qemu
