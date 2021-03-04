@@ -20,10 +20,7 @@ before_install:
 - mkdir -p $HOME/.docker
 - echo '{"experimental":"enabled"}' | sudo tee $HOME/.docker/config.json
 - sudo service docker start
-- >
-  if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
-    echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
-  fi
+- echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
 - docker run --rm --privileged linuxkit/binfmt:v0.8
 - docker --version
 - docker buildx create --use
