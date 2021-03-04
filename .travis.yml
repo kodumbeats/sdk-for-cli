@@ -29,7 +29,7 @@ before_install:
 - docker buildx create --use
 
 script:
-- docker buildx ls; docker ps
+- docker buildx ls; docker buildx inspect --bootstrap; docker ps
 
 deploy:
   - provider: script
